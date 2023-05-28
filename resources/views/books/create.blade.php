@@ -15,7 +15,7 @@
     
     <h2 class="d-flex justify-content-center">CREA</h2>
     <div class="d-flex justify-content-center">
-        <form action="{{ route('books.store') }}" method="POST" class="col-md-4 ">
+        <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data" class="col-md-4 ">
             @method('POST')
             @csrf
             <div class="form-floating mb-3">
@@ -48,6 +48,7 @@
                         Inserisci un valore numerico obbligatorio!
                     </span>
                 @enderror
+                <input class="form-control" id="image" name="image" type="file">
             </div>
 
             <div class="d-grid gap-3">
