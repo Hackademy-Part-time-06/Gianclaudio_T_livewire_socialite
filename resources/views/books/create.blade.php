@@ -7,8 +7,12 @@
 
     <title>Laravel</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+</head>
 
-<body class="antialiased">
+<body>
+    <x-navbar />
+    
     <h2 class="d-flex justify-content-center">CREA</h2>
     <div class="d-flex justify-content-center">
         <form action="{{ route('books.store') }}" method="POST" class="col-md-4 ">

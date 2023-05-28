@@ -7,6 +7,12 @@
         <title>Laravel</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+       
+        
+     
+    <body class="antialiased">
+    <x-navbar />
+
         <div class="container">
             <div class="row ">
                 <div class="col-mb-6 d-flex justify-content-center mt-5">
@@ -30,9 +36,6 @@
                 
             </div>
         </div>
-        
-     
-    <body class="antialiased">
        
     </body>
 </html>
