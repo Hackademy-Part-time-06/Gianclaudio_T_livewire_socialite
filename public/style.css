@@ -4,14 +4,18 @@
     font-size: 20px;
 }
 
-.navbar-custom {
-    text-transform: uppercase;
-}
+a {text-decoration: none; }
 
-.navbar-custom li a {
+.ul-custom li a {
     border: 1px solid transparent;
+    height: 43px;
 }
 
-.navbar-custom li a:hover {
+.ul-custom li a:hover {
     border-color: #ffffffff;
+    height: 45px;
+}
+
+.navbar-custom {
+    height: 45px;
 }
