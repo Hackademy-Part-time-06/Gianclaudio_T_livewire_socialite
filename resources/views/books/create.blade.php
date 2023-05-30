@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
-</head>
-
-<body>
-    <x-navbar />
-    
+<x-main>
     <h2 class="d-flex justify-content-center">CREA</h2>
     <div class="d-flex justify-content-center">
         <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data" class="col-md-4 ">
@@ -56,7 +42,4 @@
             </div>
         </form>
     </div>
-
-</body>
-
-</html>
+</x-main>
