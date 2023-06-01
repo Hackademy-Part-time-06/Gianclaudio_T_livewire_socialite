@@ -18,7 +18,7 @@
         <table class="table border mt-2">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Genere</th>
                     <th scope="col">Nome</th>
                     
                     <th scope="col"></th>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Route::get('/categoria', [CategoryController::class, 'index'])->name('categorys.
 Route::get('/categoria/crea', [CategoryController::class, 'create'])->name('categorys.create');
 Route::post('/categoria/salva', [CategoryController::class, 'store'])->name('categorys.store');
 Route::get('/categoria/{category}/dettagli', [CategoryController::class, 'show'])->name('categorys.show');
+
+Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
