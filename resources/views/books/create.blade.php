@@ -1,4 +1,4 @@
-<x-main>
+<x-main headerTitle="Crea un libro">
     <h2 class="d-flex justify-content-center">CREA</h2>
     <div class="d-flex justify-content-center">
         <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data" class="col-md-4 ">

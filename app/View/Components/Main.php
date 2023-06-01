@@ -8,12 +8,13 @@ use Illuminate\View\Component;
 
 class main extends Component
 {
+    public $headerTitle;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($headerTitle)
     {
-        //
+        $this->headerTitle = $headerTitle;
     }
 
     /**

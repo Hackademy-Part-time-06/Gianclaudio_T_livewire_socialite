@@ -1,4 +1,4 @@
-<x-main>
+<x-main headerTitle='Lista Libri'>
     <div class="container mt-5">
 
         @if (session('success'))
@@ -25,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($books as $book)
+                @foreach ($books as $book)
                     <tr>
                         <th scope="row">{{ $book['id'] }}</th>
                         <td>{{ $book['name'] }}</td>
@@ -36,13 +36,31 @@
                             </a>
                         </td>
                     </tr>
-                @empty
-                    <tr colspan="4"> </tr>
-                @endforelse
+               
+                    
+                @endforeach
             </tbody>
         </table>
     </div>
 
+    <div class="container my-5">
+        <div class="row justify-content-around">
+
+            @foreach($books as $book)
+                <div class="col-12 col-md-3 my-3">
+                    <div class="card">
+                        <img src="{{ Storage::url($book->image) }}" class="card-img-top" alt="{{ $book->name }}">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ $book->name }}</h5>
+                          <p class="card-text">{{ $book->author }}</p>
+                          <a href="{{ route('books.index', compact('book')) }}" class="btn btn-dark">Leggi di piu'</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
 
 
 </x-main>

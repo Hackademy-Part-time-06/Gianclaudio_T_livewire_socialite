@@ -1,92 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top navbar-custom bg-primary fixed-top navbar-custom">
+<nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    
-      <a class="navbar-brand" href="#">Book</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+    <a class="navbar-brand" href="{{ route('index') }}">Book.com</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <!-- Collapsible wrapper -->
-      <div class="stylenav collapse navbar-collapse me-3" id="navbarNav">
-        <!-- Left links -->
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 navbar-hover js_NavbarMenu ul-custom">
-          <li class="nav-item active">
-            <a class="nav-link active " aria-current="page" href="{{route('index')}}">
-            <i class="bi bi-stopwacht-fill"></i>
-            Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('books.create')}}">Crea Libro</a>
-          </li>
-          <li class="nav-item">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('books.create') }}">Inserisci un libro</a>
+        </li>
+<li class="nav-item">
             <a class="nav-link" href="{{route('categorys.create')}}">Crea Categoria</a>
           </li>
-          <!-- Navbar dropdown -->
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="{{route('books.index')}}"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Lista libri
-            </a>
-            <!-- Dropdown menu -->
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
-                <a class="dropdown-item" href="#">Action</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">Another action</a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="{{route('categorys.index')}}"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Lista Categorie
-            </a>
-            <!-- Dropdown menu -->
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
-                <a class="dropdown-item" href="#">Action</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">Another action</a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </li>
-            </ul>
-          </li>
-          
-        </ul>
         
-        <!-- Left links -->
-      </div>
-      <!-- Collapsible wrapper -->
+        @auth
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Benvenuto {{ Auth::user()->name }},
+          </a>
+          <ul class="dropdown-menu">
+<li class="nav-item">
+          <a class="nav-link" href="{{ route('books.create') }}">Inserisci un libro</a>
+        </li>
+</li>
+<li class="nav-item">
+            <a class="nav-link" href="{{route('categorys.create')}}">Crea Categoria</a>
+          </li>
+            <li><a class="dropdown-item" href="#">Profilo</a></li>
+            
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.querySelector('#form-logout').submit();">Logout</a></li>
+            
+            <form id="form-logout" method="POST" action="{{ route('logout') }}" class="d-none">@csrf</form>
+          </ul>
+        </li>
+        @else
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Benvenuto Ospite,
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('register') }}">Registrati</a></li>
+            <li><a class="dropdown-item" href="{{ route('login') }}">Accedi</a></li>
+          </ul>
+        </li>
+        @endauth
+
+      </ul>
+    </div>
   </div>
-    
-  </nav>
+</nav>

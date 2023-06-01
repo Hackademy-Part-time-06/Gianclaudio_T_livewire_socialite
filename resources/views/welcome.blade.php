@@ -1,4 +1,4 @@
-<x-main>
+<x-main headerTitle="Home-Page">
     <div class="container">
         <div class="row ">
             <div class="col-mb-6 d-flex justify-content-center mt-5">
@@ -30,6 +30,8 @@
             </div>
         </div>
     </div>
+
+    
 
 
 </x-main>

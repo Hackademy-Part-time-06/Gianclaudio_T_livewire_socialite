@@ -1,4 +1,4 @@
-<x-main>
+<x-main headerTitle="Registrati">
 
     {{-- form --}}
     <div class="container my-5">
@@ -19,19 +19,22 @@
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome utente</label>
-                        <input type="text" name="name" class="form-control" id="name" required>
+                        <input type="text" name="name" class="form-control" id="name" required value="{{ old('name') }}"
+                        placeholder="Inserisci nome utente">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email utente</label>
-                        <input type="email" name="email" class="form-control" id="email" required>
+                        <input type="email" name="email" class="form-control" id="email" required value="{{ old('email') }}"
+                        placeholder="Inserisci la tua email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="password" required>
+                        <input type="password" name="password" class="form-control" id="password" required value="{{ old('password') }}"
+                        placeholder="Inserisci una password">
                     </div>
                     <div class="mb-3">
                         <label for="password_confirmation" class="form-label">Conferma password</label>
-                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
+                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required placeholder="Ripeti la tua password" >
                     </div>
                     
                     <button type="submit" class="btn btn-dark">Registrati</button>

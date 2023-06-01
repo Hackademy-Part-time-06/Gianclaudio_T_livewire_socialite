@@ -17,7 +17,7 @@
     <main class="flex-shrink-0">
         <x-navbar />
 
-        
+        <x-header headerTitle="{{ $headerTitle }}" />
         
         {{$slot}}
     </main>

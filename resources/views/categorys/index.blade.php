@@ -1,4 +1,4 @@
-<x-main>
+<x-main headerTitle="Lista categorie">
     <div class="container mt-5">
 
         @if (session('success'))

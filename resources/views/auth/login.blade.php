@@ -1,4 +1,4 @@
-<x-main>
+<x-main headerTitle="Accedi">
 
     {{-- form --}}
     <div class="container my-5">
