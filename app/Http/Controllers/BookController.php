@@ -10,7 +10,7 @@ class BookController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth')->except('show2');
+        $this->middleware('auth')->except('index');
     }
 
     public function index()

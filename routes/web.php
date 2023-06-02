@@ -15,7 +15,7 @@ use App\Http\Controllers\ArticleController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware(['auth'])->group(function(){
+
 
 
 Route::get('/', function () {
@@ -32,6 +32,6 @@ Route::get('/categoria/crea', [CategoryController::class, 'create'])->name('cate
 Route::post('/categoria/salva', [CategoryController::class, 'store'])->name('categorys.store');
 Route::get('/categoria/{category}/dettagli', [CategoryController::class, 'show'])->name('categorys.show');
 
-});
+
 
 
