@@ -16,8 +16,9 @@
                         Libri
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('books.create')}}">Crea un libro</a></li>
+                        <li><a class="dropdown-item" href="{{ route('books.create') }}">Crea un libro</a></li>
                         <li><a class="dropdown-item" href="{{ route('books.index') }}">Elenco Libri</a></li>
+                        <li><a class="dropdown-item" href="{{ route('books.index') }}">Modifica Libri</a></li>
 
                     </ul>
                 </li>
@@ -27,7 +28,7 @@
                         Categorie
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('categorys.create')}}">Crea una categoria</a></li>
+                        <li><a class="dropdown-item" href="{{ route('categorys.create') }}">Crea una categoria</a></li>
                         <li><a class="dropdown-item" href="{{ route('categorys.index') }}">Elenco Categorie</a></li>
 
                     </ul>
@@ -39,27 +40,32 @@
                             aria-expanded="false">
                             Benvenuto {{ Auth::user()->name }},
                         </a>
+                        
                         <ul class="dropdown-menu">
+                            
                             <li><a class="dropdown-item" href="#">Profilo</a></li>
 
-                    
-                    <li><a class="dropdown-item" href="#"
-                            onclick="event.preventDefault(); document.querySelector('#form-logout').submit();">Logout</a>
+
+                            <li><a class="dropdown-item" href="#"
+                                    onclick="event.preventDefault(); document.querySelector('#form-logout').submit();">Logout</a>
+                            </li>
+                        
+                            <form id="form-logout" method="POST" action="{{ route('logout') }}" class="d-none">@csrf
+                            
+                            </form>
+
+                        </ul>
+                        
                     </li>
 
-                    <form id="form-logout" method="POST" action="{{ route('logout') }}" class="d-none">@csrf</form>
-                            
-                        </ul>
-                    </li>
-                    
-                    
+
                 </ul>
                 </li>
             @else
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Benvenuto Ospite,
+                        Accedi
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('register') }}">Registrati</a></li>
@@ -67,7 +73,7 @@
 
                     </ul>
                 </li>
-                
+
             @endauth
 
             </ul>

@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ArticleController;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,22 @@ Route::get('/categoria/crea', [CategoryController::class, 'create'])->name('cate
 Route::post('/categoria/salva', [CategoryController::class, 'store'])->name('categorys.store');
 Route::get('/categoria/{category}/dettagli', [CategoryController::class, 'show'])->name('categorys.show');
 
+Route::get('/libri/{book}/modifica', [BookController::class, 'edit'])->name('books.edit');
+Route::put('/libri/{book}/aggiorna', [BookController::class, 'update'])->name('books.update');
+Route::delete('/libri/{book}', [BookController::class, 'destroy'])->name('books.destroy');
 
 
 
+//Chiamata API
+
+Route::get('/api', function () {
+    $genres = Http::get('https://api.jikan.moe/v4/genres/anime')->json();
+    return view('api.api', ['genres' => $genres['data']]);
+});
+Route::get('/anime/list/genre/{genre_id}/{genre_name}', function ($genre_id, $genre_name) {
+    $animes = Http::get('https://api.jikan.moe/v4/anime', [
+        'genres' => $genre_id
+    ])->json();
+    return view('api.list', ['animes' => $animes['data'], 'genre_name' => $genre_name]);
+})->name('anime.list');
+    

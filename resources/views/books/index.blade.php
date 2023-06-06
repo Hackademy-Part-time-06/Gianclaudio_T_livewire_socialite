@@ -31,13 +31,22 @@
                         <td>{{ $book['name'] }}</td>
                         <td>{{ $book['author'] }}</td>
                         <td>
-                            <a href="{{ route('books.show', ['book' => $book['id']]) }}">
-                                Visualizza
-                            </a>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="{{ route('books.show', ['book' => $book['id']]) }}"
+                                    class="btn btn-success me-md-2">
+                                    Visualizza
+                                </a>
+                                <a href="{{ route('books.edit', ['book' => $book['id']]) }}"
+                                    class="btn btn-warning me-md-2">Modifica
+                                </a>
+                                <form action="{{ route('books.destroy', compact('book')) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Cancella</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
-               
-                    
                 @endforeach
             </tbody>
         </table>
@@ -46,14 +55,15 @@
     <div class="container my-5">
         <div class="row justify-content-around">
 
-            @foreach($books as $book)
+            @foreach ($books as $book)
                 <div class="col-12 col-md-3 my-3">
                     <div class="card">
                         <img src="{{ Storage::url($book->image) }}" class="card-img-top" alt="{{ $book->name }}">
                         <div class="card-body">
-                          <h5 class="card-title">{{ $book->name }}</h5>
-                          <p class="card-text">{{ $book->author }}</p>
-                          <a href="{{ route('books.index', compact('book')) }}" class="btn btn-dark">Leggi di piu'</a>
+                            <h5 class="card-title">{{ $book->name }}</h5>
+                            <p class="card-text">{{ $book->author }}</p>
+                            <a href="{{ route('books.index', compact('book')) }}" class="btn btn-dark">Leggi di
+                                piu'</a>
                         </div>
                     </div>
                 </div>

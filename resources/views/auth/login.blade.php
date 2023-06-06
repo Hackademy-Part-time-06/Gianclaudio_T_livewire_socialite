@@ -14,16 +14,16 @@
                             </ul>
                         </div>
                     @endif
-
+                    
                     @csrf
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email utente</label>
-                        <input type="email" name="email" class="form-control" id="email" required>
+                        <input type="email" name="email" class="form-control" id="email" required placeholder="Inserisci la tua Email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="password" required>
+                        <input type="password" name="password" class="form-control" id="password" required required placeholder="Inserisci la tua Email">
                     </div>
                     
                     <button type="submit" class="btn btn-dark">Accedi</button>
