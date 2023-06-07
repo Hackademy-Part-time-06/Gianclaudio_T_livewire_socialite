@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>{{ $title ?? ''}}</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="\img\book_favicon.jpg" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
