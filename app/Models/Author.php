@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Author extends Model
 {
     use HasFactory;
-
     protected $fillable = ['name', 'surname', 'dateofbirth'];
+
+    protected $casts = [
+        'dateofbirth' => 'datetime',
+    ];
 }

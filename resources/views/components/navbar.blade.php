@@ -33,7 +33,17 @@
 
                     </ul>
                 </li>
-
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Autori
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('authors.create') }}">Crea un autore</a></li>
+                        <li><a class="dropdown-item" href="{{ route('authors.index') }}">Elenco autori</a></li>
+                    </ul>
+                </li>
+                
                 @auth
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -57,7 +67,6 @@
                         </ul>
                         
                     </li>
-
 
                 </ul>
                 </li>

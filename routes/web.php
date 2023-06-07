@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthorController;
 use Illuminate\Support\Facades\Http;
 
 /*
@@ -36,6 +37,8 @@ Route::get('/categoria/{category}/dettagli', [CategoryController::class, 'show']
 Route::get('/libri/{book}/modifica', [BookController::class, 'edit'])->name('books.edit');
 Route::put('/libri/{book}/aggiorna', [BookController::class, 'update'])->name('books.update');
 Route::delete('/libri/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+
+Route::resource('authors', AuthorController::class);
 
 
 
