@@ -29,7 +29,7 @@
                     <tr>
                         <th scope="row">{{ $book['id'] }}</th>
                         <td>{{ $book['name'] }}</td>
-                        <td>{{ $book['author'] }}</td>
+                        <td>{{ $book->author->name }}</td>
                         <td>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <a href="{{ route('books.show', ['book' => $book['id']]) }}"
@@ -61,7 +61,7 @@
                         <img src="{{ Storage::url($book->image) }}" class="card-img-top" alt="{{ $book->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $book->name }}</h5>
-                            <p class="card-text">{{ $book->author }}</p>
+                            <p class="card-text">{{ $book->author->name }}</p>
                             <a href="{{ route('books.index', compact('book')) }}" class="btn btn-dark">Leggi di
                                 piu'</a>
                         </div>

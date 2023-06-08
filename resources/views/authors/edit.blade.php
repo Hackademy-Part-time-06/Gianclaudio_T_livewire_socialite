@@ -55,8 +55,8 @@
 
                             <div class="d-grid gap-3">
                                 <button class="btn btn-primary btn-lg p-2" type="submit">Aggiorna</button>
-                                <form action="{{route('authors.destroy', compact('author'))}}" method="POST">
-                                    @method('DELETE')
+                                <form action="{{route('authors.update', compact('author'))}}" method="POST">
+                                    @method('PUT')
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-lg">Cancella</button>
                                 </form>

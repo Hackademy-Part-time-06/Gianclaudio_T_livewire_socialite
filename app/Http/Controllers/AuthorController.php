@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class AuthorController extends Controller
 {
@@ -29,6 +30,7 @@ class AuthorController extends Controller
             'name' => $request->input('name'),
             'surname' => $request->input('surname'),
             'birthday' => $request->birthday,
+            
         ]);
 
         return redirect()->route('authors.index')->with('success', 'Creazione avvenuta con successo!');
@@ -37,7 +39,8 @@ class AuthorController extends Controller
 
     public function show(Author $author)
     {
-        return view('authors.show', compact('author'));
+        $books = Book::all();
+        return view('authors.show', compact('author', 'books'));
     }
 
     public function edit(Author $author)

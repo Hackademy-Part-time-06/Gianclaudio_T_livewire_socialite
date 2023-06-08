@@ -1,6 +1,15 @@
 <x-main headerTitle="Crea un libro">
     <h2 class="d-flex justify-content-center">CREA</h2>
     <div class="d-flex justify-content-center">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data" class="col-md-4 ">
             @method('POST')
             @csrf
@@ -15,14 +24,18 @@
                 @enderror
             </div>
 
+            
             <div class="form-floating mb-3">
-                <input class="form-control" id="author" name="author" type="text" value="{{ old('author') }}"
-                    placeholder="Inserisci nome autore">
-                <label for="author">Nome Autore</label>
-                @error('author')
-                    <span class="text-danger">
-                        Autore obbligatorio!
-                    </span>
+                <select class="form-control" id="author_id" name="author_id">
+                    @foreach ($authors as $author)
+                    <option value="{{$author->id}}">{{$author->name}} {{$author->surname}}</option>
+                    @endforeach
+                </select>
+                <label for="author_id">Nome Autore</label>
+                @error('author_id')
+                <span class="text-danger">
+                    {{$message}}
+                </span>
                 @enderror
             </div>
             <div class="form-floating mb-3">
