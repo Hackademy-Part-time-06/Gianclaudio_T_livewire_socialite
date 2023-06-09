@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Http\Requests\AuthorRequest;
 
 class AuthorController extends Controller
 {
@@ -24,7 +25,7 @@ class AuthorController extends Controller
         return view('authors.create');
     }
 
-    public function store(Request $request)
+    public function store(AuthorRequest $request)
     {
         Author::create([
             'name' => $request->input('name'),

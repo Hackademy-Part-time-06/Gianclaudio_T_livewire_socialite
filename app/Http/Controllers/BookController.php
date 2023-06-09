@@ -56,7 +56,8 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
-        return view('books.edit', ['book' => $book]);
+        $authors = Author::all();
+        return view('books.edit', ['book' => $book, 'authors' => $authors]);
     }
 
     public function update(BookRequest $request, Book $book)
@@ -69,7 +70,7 @@ class BookController extends Controller
 
         $book->update([
             'name' => $request->input('name'),
-            'author_id' => $request->author,
+            'author_id' => $request->author_id,
             'pages' => $request->pages,
             'image' => $path_image
         ]);
