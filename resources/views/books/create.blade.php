@@ -27,6 +27,9 @@
             
             <div class="form-floating mb-3">
                 <select class="form-control" id="author_id" name="author_id">
+                    <option>
+                        Selezione autore
+                    </option>
                     @foreach ($authors as $author)
                     <option value="{{$author->id}}">{{$author->name}} {{$author->surname}}</option>
                     @endforeach

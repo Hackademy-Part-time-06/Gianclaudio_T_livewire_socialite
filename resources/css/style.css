@@ -19,3 +19,7 @@ a {text-decoration: none; }
 .navbar-custom {
     height: 45px;
 }
+
+.ul {
+    min-width: 5rem;
+}

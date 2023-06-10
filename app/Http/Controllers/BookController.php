@@ -6,6 +6,7 @@ use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Author;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -18,6 +19,13 @@ class BookController extends Controller
     {
 
         $books = Book::all(); //ottiene tutti i record presenti nella tabella books
+
+        if (Auth::user()) {
+            //Filtra i libri
+            $books = Book::where('user_id', Auth::user()->id)->get();
+        } else {
+            $books = Book::all();
+        }
         return view('books.index', ['books' => $books]);
     }
 
@@ -42,6 +50,7 @@ class BookController extends Controller
             'author_id' => $request->author_id,
             'pages' => $request->pages,
             'image' => $path_image,
+            'user_id' => Auth::user()->id // Inserisco l'id dell'utente che ha creato la risorsa
         ]);
 
         return redirect()->route('books.index')->with('success', 'Creazione avvenuta con successo!');
@@ -57,6 +66,11 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         $authors = Author::all();
+
+        if (!(Auth::user()->id == $book->user_id)) {
+            abort(401);
+        }
+        
         return view('books.edit', ['book' => $book, 'authors' => $authors]);
     }
 

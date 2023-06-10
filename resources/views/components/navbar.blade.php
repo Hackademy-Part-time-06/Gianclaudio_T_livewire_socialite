@@ -10,7 +10,7 @@
             <div class="d-flex justify-content-end">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Home</a>
+                        <a class="nav-link active fw-bold" aria-current="page" href="{{ route('index') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -79,7 +79,7 @@
                             aria-expanded="false">
                             Accedi
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu ul">
                             <li><a class="dropdown-item" href="{{ route('register') }}">Registrati</a></li>
                             <li><a class="dropdown-item" href="{{ route('login') }}">Accedi</a></li>
 
