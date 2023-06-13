@@ -24,10 +24,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
-Route::get('/libri', [BookController::class, 'index'])->name('books.index');
-Route::get('/libri/crea', [BookController::class, 'create'])->name('books.create');
-Route::post('/libri/salva', [BookController::class, 'store'])->name('books.store');
-Route::get('/libri/{book}/dettagli', [BookController::class, 'show'])->name('books.show');
+// Route::get('/libri', [BookController::class, 'index'])->name('books.index');
+// Route::get('/libri/crea', [BookController::class, 'create'])->name('books.create');
+// Route::post('/libri/salva', [BookController::class, 'store'])->name('books.store');
+// Route::get('/libri/{book}/dettagli', [BookController::class, 'show'])->name('books.show');
+
+Route::resource('books', BookController::class);
 
 Route::get('/categoria', [CategoryController::class, 'index'])->name('categorys.index');
 Route::get('/categoria/crea', [CategoryController::class, 'create'])->name('categorys.create');

@@ -50,6 +50,27 @@
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">
+
+                                @foreach ($categories as $category)
+                                <div class="form-check">
+                                    <input class="form-check-input" {{-- @if($book->categories->contains($category->id))
+                                    checked @endif --}}
+                                    @checked($book->categories->contains($category->id))
+                                    type="checkbox"
+                                    name="categories[]" value="{{$category->id}}" id="categories-{{$category->id}}">
+                                    <label class="form-check-label" for="categories-{{$category->id}}">
+                                        {{$category->name}}
+                                    </label>
+                                </div>
+                                @endforeach
+
+                                @error('category_id')
+                                <span class="text-danger">
+                                    {{$message}}
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="form-floating mb-3">
                                 <input class="form-control" id="pages" name="pages" required type="number"
                                     value="{{ $book->pages }}" placeholder="Inserisci Numero pagine Libro">
                                 <label for="pages">Numero pagine Libro</label>
@@ -73,6 +94,12 @@
                             <div class="d-grid gap-3">
                                 <button class="btn btn-primary btn-lg p-2" type="submit">Aggiorna</button>
                             </div>
+                           
+                        </form>
+                        <form action="{{route('books.destroy', compact('book'))}}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-lg">Cancella</button>
                         </form>
                     </div>
                 </div>

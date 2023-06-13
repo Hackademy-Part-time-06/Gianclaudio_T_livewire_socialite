@@ -13,6 +13,15 @@
                     <p>Autore: {{$book->author->name}} {{$book->author->surname}} </p>
                     <p>Numero Pagine: {{$book->pages}} </p>
                     <p>Aggiunto Da: {{$book->user->name ?? 'Ignoto'}} </p>
+                    <p>Categorie:
+                        @foreach ($book->categories as $category)
+                        @if($loop->last)
+                        {{$category->name}}
+                        @else
+                        {{$category->name . ', '}}
+                        @endif
+                        @endforeach
+                    </p>
                 </div>
             </div>
         </div>

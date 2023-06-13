@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Author;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
 
 class BookController extends Controller
 {
@@ -32,7 +33,8 @@ class BookController extends Controller
     public function create()
     {
         $authors = Author::all();
-        return view('books.create', compact('authors'));
+        $categories = Category::all();
+        return view('books.create', compact('authors', 'categories'));
     }
 
     public function store(BookRequest $request)
@@ -45,13 +47,16 @@ class BookController extends Controller
         $path_image = $request->file('image')->storeAs('public/images/cover', $path_name);
     }
 
-        Book::create([
+     $data = Book::create([
             'name' => $request->name,
             'author_id' => $request->author_id,
+            
             'pages' => $request->pages,
             'image' => $path_image,
             'user_id' => Auth::user()->id // Inserisco l'id dell'utente che ha creato la risorsa
         ]);
+
+        $data->categories()->attach($request->categories);
 
         return redirect()->route('books.index')->with('success', 'Creazione avvenuta con successo!');
     }
@@ -65,13 +70,15 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
-        $authors = Author::all();
-
+        
         if (!(Auth::user()->id == $book->user_id)) {
             abort(401);
         }
+
+        $authors = Author::all();
+        $categories = Category::all();
         
-        return view('books.edit', ['book' => $book, 'authors' => $authors]);
+        return view('books.edit', ['book' => $book, 'authors' => $authors, 'categories' => $categories]);
     }
 
     public function update(BookRequest $request, Book $book)
@@ -85,17 +92,26 @@ class BookController extends Controller
         $book->update([
             'name' => $request->input('name'),
             'author_id' => $request->author_id,
+            // 'category_id' => $request->category_id,
             'pages' => $request->pages,
             'image' => $path_image
+            
         ]);
 
+        $book->categories()->sync($request->categories);
+
         return redirect()->route('books.index')->with('success', 'Modifica avvenuta con successo!');
+
+       
     }
 
     public function destroy(Book $book)
-    {
+    {   
+        $book->categories()->detach();
         $book->delete();
-        return redirect()->route('books.index')->with('success', 'Cancellazione avvenuta con successo!');
+        return redirect()
+        ->route('books.index')
+        ->with('success', 'Cancellazione avvenuta con successo!');
     }
 }
 

@@ -42,6 +42,23 @@
                 @enderror
             </div>
             <div class="form-floating mb-3">
+                @foreach ($categories as $category)
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="categories[]"
+                        value="{{$category->id}}" id="categories-{{$category->id}}">
+                    <label class="form-check-label" for="categories-{{$category->id}}">
+                        {{$category->name}}
+                    </label>
+                </div>
+                @endforeach
+
+                @error('category_id')
+                <span class="text-danger">
+                    {{$message}}
+                </span>
+                @enderror
+            </div>
+            <div class="form-floating mb-3">
                 <input class="form-control" id="pages" name="pages" type="text" value="{{ old('pages') }}"
                     placeholder="Inserisci Numero pagine Libro">
                 <label for="pages">Numero pagine Libro</label>

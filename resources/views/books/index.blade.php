@@ -12,7 +12,7 @@
             </div>
         @endif
         <div class="align-middle gap-2 d-flex justify-content-between">
-            <h3>Elenco Libri inseriti da {{Auth::user()->name}}</h3>
+            <h3>Elenco Libri inseriti da {{Auth::user()->name ?? 'Tutti'}}</h3>
             <a href="{{route('books.create')}}" class="btn btn-success " type="button">Crea Nuovo Libro</a>
         </div>
         <table class="table border mt-2">
@@ -31,6 +31,16 @@
                     <th scope="row">{{$loop->iteration}}</th>
                     <td>{{$book['name']}}</td>
                     <td>{{$book->author->name . ' ' . $book->author->surname}}</td>
+                    <td>
+                        <ul>
+                            @forelse ($book->categories as $category)
+                            <li>{{$category->name}} </li>
+                            @empty
+                            Nessuna categoria
+                            @endforelse
+
+                        </ul>
+                    </td>
                     <td>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href="{{route('books.show', compact('book'))}}"
