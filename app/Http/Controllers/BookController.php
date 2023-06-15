@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
+
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Author;
@@ -66,6 +67,12 @@ class BookController extends Controller
     {
 
         return view('books.show', compact('book'));
+    }
+
+    public function search(Request $request){
+   //     $search = $request->search ?? "";
+        $books = Book::where('name', 'like','%'.$request->search.'%')->get();
+        return view('books.index', ['books'=>$books]);
     }
 
     public function edit(Book $book)

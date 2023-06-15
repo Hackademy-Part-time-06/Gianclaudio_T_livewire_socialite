@@ -15,6 +15,8 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id');
             $table->unsignedBigInteger('category_id');
 
+            $table->primary(['book_id'], ['category_id']);
+
             $table->foreign('book_id')
                 ->references('id')
                 ->on('books');

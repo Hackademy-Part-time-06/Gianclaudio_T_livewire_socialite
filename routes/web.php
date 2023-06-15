@@ -30,6 +30,7 @@ Route::get('/', function () {
 // Route::get('/libri/{book}/dettagli', [BookController::class, 'show'])->name('books.show');
 
 Route::resource('books', BookController::class);
+Route::post('/search', [BookController::class, 'search'])->name('search');
 
 Route::get('/categoria', [CategoryController::class, 'index'])->name('categorys.index');
 Route::get('/categoria/crea', [CategoryController::class, 'create'])->name('categorys.create');

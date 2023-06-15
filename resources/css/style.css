@@ -1,5 +1,5 @@
 .stylenav {
-    justify-content: flex-end;
+    
     font-family: 'Times New Roman', georgia, serif;
     font-size: 20px;
 }
@@ -23,4 +23,11 @@ a {text-decoration: none; }
 .ul {
     min-width: 5rem;
 }
+
+.div-nav {
+    display: flex;
+}
+
+
+
 
