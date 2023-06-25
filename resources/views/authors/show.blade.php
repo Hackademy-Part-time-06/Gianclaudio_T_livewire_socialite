@@ -7,7 +7,8 @@
 
                     <p>Nome Autore: {{$author->name}} </p>
                     <p>Cognome Autore: {{$author->surname}} </p>
-                    <p>Età Autore: {{$author->birthday->format('d-m-Y')}} </p>
+                    <p>E' nato il : {{$author->birthday->format('d-m-Y')}} </p>
+                    <p>Età Autore: {{ isset($author->birthday) ? $author->birthday->diffForHumans() : ''}} </p>
 
                     @forelse ($author->books as $book)
                         <p>

@@ -5,7 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\TaskController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +45,26 @@ Route::put('/libri/{book}/aggiorna', [BookController::class, 'update'])->name('b
 Route::delete('/libri/{book}', [BookController::class, 'destroy'])->name('books.destroy');
 
 Route::resource('authors', AuthorController::class);
+
+route::get('/livewire', [TaskController::class, 'index'])->name('livewire.index');
+route::get('/livewire/crea', [TaskController::class, 'create'])->name('livewire.create');
+Route::get('/livewire/{task}/modifica', [TaskController::class, 'edit'])->name('livewire.edit');
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+  })->name('socialite.login');
+  
+  Route::get('/login/github/callback', function () {
+    $user = Socialite::driver('github')->user();
+    dd($user);
+    if ($user) {
+      Auth::login($user);
+    } else {
+      return 'errore';
+    }
+    
+  });
+
 
 
 

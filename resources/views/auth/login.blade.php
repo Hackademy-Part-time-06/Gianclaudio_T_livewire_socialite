@@ -29,6 +29,7 @@
                     <button type="submit" class="btn btn-dark">Accedi</button>
                     <a href="{{ route('register') }}" class="btn btn-outline-dark">Non sei registrato?</a>
                 </form>
+                <a href="{{ route('socialite.login') }}" class="btn btn-dark">Accedi con GitHub</a>
             </div>
         </div>
     </div>

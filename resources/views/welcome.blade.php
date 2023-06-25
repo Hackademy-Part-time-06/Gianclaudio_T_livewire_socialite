@@ -62,8 +62,26 @@
         </div>
     </div>
 
-        
+    <hr>
 
+    <div class="container">
+        <div class="row  ">
+            <div class="col-mb-6 d-flex justify-content-center mt-3 ">
+                <button class="">
+                    <a href="{{ route('livewire.index') }}">Lista Form livewire</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row  ">
+            <div class="col-mb-6 d-flex justify-content-center mt-5 ">
+                <button class="">
+                    <a href="{{ route('livewire.create') }}">Crea Form livewire</a>
+                </button>
+            </div>
+        </div>
+    </div>
     
 
 

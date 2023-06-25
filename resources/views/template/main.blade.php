@@ -9,6 +9,7 @@
     <title>{{ $title ?? ''}}</title>
     <link rel="icon" type="image/x-icon" href="\img\book_favicon.jpg" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 
 </head>
 
@@ -20,6 +21,9 @@
         <x-header headerTitle="{{ $headerTitle }}" />
         
         {{$slot}}
+
+     @livewireScripts
+     
     </main>
 </body>
 
