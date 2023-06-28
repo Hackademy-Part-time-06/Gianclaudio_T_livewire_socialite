@@ -22,9 +22,11 @@
         
         {{$slot}}
 
-     @livewireScripts
+     
      
     </main>
+
+    @livewireScripts
 </body>
 
 </html>

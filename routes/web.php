@@ -6,9 +6,16 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\TaskController;
+//use Illuminate\Foundation\Auth\User as AuthUser;
+//use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\User;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\SocialiteController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +31,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 })->name('index');
 
 // Route::get('/libri', [BookController::class, 'index'])->name('books.index');
@@ -51,33 +58,30 @@ route::get('/livewire/crea', [TaskController::class, 'create'])->name('livewire.
 Route::get('/livewire/{task}/modifica', [TaskController::class, 'edit'])->name('livewire.edit');
 
 Route::get('/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
-  })->name('socialite.login');
-  
-  Route::get('/login/github/callback', function () {
-    $user = Socialite::driver('github')->user();
-    dd($user);
-    if ($user) {
-      Auth::login($user);
-    } else {
-      return 'errore';
-    }
-    
-  });
+  return Socialite::driver('github')->redirect();
+})->name('socialite.login');
 
+Route::get('/auth/callback', function () {
+  $user = Socialite::driver('github')->user();
+  dd($user);
+  if ($user) {
+    Auth::login($user);
+  } 
+  return redirect('/dashboard');
+});
 
-
+//Route::get('login/github', [SocialiteController::class, 'login'])->name('socialite.login');
+//Route::get('login/github/callback', [SocialiteController::class, 'callback']);
 
 //Chiamata API
 
 Route::get('/api', function () {
-    $genres = Http::get('https://api.jikan.moe/v4/genres/anime')->json();
-    return view('api.api', ['genres' => $genres['data']]);
+  $genres = Http::get('https://api.jikan.moe/v4/genres/anime')->json();
+  return view('api.api', ['genres' => $genres['data']]);
 });
 Route::get('/anime/list/genre/{genre_id}/{genre_name}', function ($genre_id, $genre_name) {
-    $animes = Http::get('https://api.jikan.moe/v4/anime', [
-        'genres' => $genre_id
-    ])->json();
-    return view('api.list', ['animes' => $animes['data'], 'genre_name' => $genre_name]);
+  $animes = Http::get('https://api.jikan.moe/v4/anime', [
+    'genres' => $genre_id
+  ])->json();
+  return view('api.list', ['animes' => $animes['data'], 'genre_name' => $genre_name]);
 })->name('anime.list');
-    
